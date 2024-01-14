@@ -25,14 +25,20 @@ return require('packer').startup(function(use)
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
+  use("nvim-treesitter/nvim-treesitter-context")
+  use("nvim-treesitter/playground")
+
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
+	  branch = 'v3.x',
 	  requires = {
+		  -- LSP Support
 		  {'neovim/nvim-lspconfig'},
 		  {'williamboman/mason.nvim'},
 		  {'williamboman/mason-lspconfig.nvim'},
 
+		  -- Autocompletion
 		  {'hrsh7th/nvim-cmp'},
 		  {'hrsh7th/cmp-buffer'},
 		  {'hrsh7th/cmp-path'},
@@ -40,8 +46,20 @@ return require('packer').startup(function(use)
 		  {'hrsh7th/cmp-nvim-lsp'},
 		  {'hrsh7th/cmp-nvim-lua'},
 
+		  -- Snippets
 		  {'L3MON4D3/LuaSnip'},
 		  {'rafamadriz/friendly-snippets'},
 	  }
   }
+
+  use({
+      "Pocco81/auto-save.nvim",
+      config = function()
+          require("auto-save").setup {
+              -- your config goes here
+              -- or just leave it empty :)
+          }
+      end,
+  })
+
   end)
